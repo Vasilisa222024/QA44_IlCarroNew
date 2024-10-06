@@ -3,14 +3,19 @@ package tests;
 import dto.UserDto;
 import manager.ApplicationManager;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.HeaderMenuItem;
+import utils.TakeScreenShot;
+import utils.TestNGListner;
 
 import static pages.BasePage.clickButtonsOnHeader;
 import static utils.RondomUtils.generateEmail;
 import static utils.RondomUtils.generateString;
+import static utils.TakeScreenShot.takeScreenShot;
+@Listeners(TestNGListner.class)
 
 public class LoginTests extends ApplicationManager {
     @Test
@@ -21,7 +26,9 @@ public class LoginTests extends ApplicationManager {
                         .typeloginForm("qa44@gmai.com", "Qa@44Dan")
                         .clickBtnLoginPositiv()
                         .isTextInElementPresent_LoginSuccess())
+
         ;
+
 
     }
 

@@ -3,13 +3,15 @@ package tests;
 import dto.UserDto;
 import manager.ApplicationManager;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import utils.TestNGListner;
 
 import java.util.Random;
 
 import static utils.RondomUtils.generateString;
-
+@Listeners(TestNGListner.class)
 public class RegistrationTest extends ApplicationManager {
     @Test
     public void RegistrationPositivTest() {

@@ -4,18 +4,20 @@ import dto.CarDto;
 import manager.ApplicationManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LetTheCarWorkPage;
 import pages.LoginPage;
 import utils.Fuel;
 import utils.HeaderMenuItem;
+import utils.TestNGListner;
 
 import java.lang.reflect.Method;
 import java.util.Random;
 
 import static pages.BasePage.clickButtonsOnHeader;
-
+@Listeners(TestNGListner.class)
 
     public class AddNewCarTests extends ApplicationManager {
         LetTheCarWorkPage letTheCarWorkPage;
