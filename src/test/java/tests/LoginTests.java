@@ -15,6 +15,7 @@ import static pages.BasePage.clickButtonsOnHeader;
 import static utils.RondomUtils.generateEmail;
 import static utils.RondomUtils.generateString;
 import static utils.TakeScreenShot.takeScreenShot;
+import static utils.PropertiesReader.getProperty;
 @Listeners(TestNGListner.class)
 
 public class LoginTests extends ApplicationManager {

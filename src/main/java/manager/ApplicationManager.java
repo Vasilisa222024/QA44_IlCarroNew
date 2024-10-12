@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class ApplicationManager {
     private WebDriver driver;
-    public Logger logger= LoggerFactory.getLogger(ApplicationManager.class);
+     public  Logger logger= LoggerFactory.getLogger(ApplicationManager.class);
 
     public WebDriver getDriver() {
 

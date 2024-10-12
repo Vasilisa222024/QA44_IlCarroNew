@@ -1,6 +1,7 @@
 package tests;
 
 import dto.CarDto;
+import dto.UserDto;
 import manager.ApplicationManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -11,10 +12,12 @@ import pages.LetTheCarWorkPage;
 import pages.LoginPage;
 import utils.Fuel;
 import utils.HeaderMenuItem;
+import utils.RetryAnalyzer;
 import utils.TestNGListner;
-
+import org.slf4j.Logger;
 import java.lang.reflect.Method;
 import java.util.Random;
+import static utils.PropertiesReader.getProperty;
 
 import static pages.BasePage.clickButtonsOnHeader;
 @Listeners(TestNGListner.class)
@@ -23,19 +26,25 @@ import static pages.BasePage.clickButtonsOnHeader;
         LetTheCarWorkPage letTheCarWorkPage;
         LoginPage loginPage;
 
+    UserDto user=new UserDto("Dan","Gold",
+            getProperty("data.properties","email"),
+            getProperty("data.properties","password"));
         @BeforeMethod
-        public void startAddNewCar() {
-            logger.info("start method-->start startAddNewCar" + "user: qa44@gmai.com");
+        public void startAddNewCar(Method method) {
+            logger.info("start method-->"+method.getName() + "for user: "+user.getEmail());
             new HomePage(getDriver());
             loginPage = clickButtonsOnHeader(HeaderMenuItem.LOGIN);
-            loginPage.typeloginForm("qa44@gmai.com", "Qa@44Dan")
+           // loginPage.typeloginForm("qa44@gmai.com", "Qa@44Dan")
+                  //  .clickBtnLoginPositiv();
+
+            loginPage.typeloginForm(user.getEmail(), user.getPassword())
                     .clickBtnLoginPositiv();
             letTheCarWorkPage = clickButtonsOnHeader(HeaderMenuItem.LET_THE_CAR_WORK);
 
 
         }
 
-        @Test
+        @Test(retryAnalyzer = RetryAnalyzer.class)
         public void addNewCarPositiveTest(Method method) {
             CarDto car = CarDto.builder()
                     .city("Haifa")
